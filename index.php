@@ -41,13 +41,23 @@ switch ($request) {
 
 
 // backend route
-    case '/admin/login':
-    case '/Dashboard':
-    case '/dashboard':
     case '/admin':
+    case '/admin/dashboard':
         require_once __DIR__ . '/backend/dashboard.php';
         break;
 
+
+    case '/admin/login':
+        require_once __DIR__ . '/backend/login.php';
+        break;
+    case '/admin/register':
+        require_once __DIR__ . '/backend/register.php';
+        break;
+
+
+
+
+// 404 defult 
     default:
         http_response_code(404);
         require_once __DIR__ . '/frontend/404.php';
