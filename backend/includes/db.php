@@ -1,9 +1,10 @@
 <?php
 // mysqli method
 
-$servername= "localhost";
-$username = "root";
-$password = "";
+$db_servername= "localhost";
+$db_username = "root";
+$db_password = "";
+$db_name = "dmdb";
 ?>
 
 <!-- PDO method -->
@@ -11,7 +12,7 @@ $password = "";
 
 // connection create and check
 try {
-  $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
+  $conn = new PDO("mysql:host=$db_servername;dbname=$db_name", $db_username, $db_password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   echo "Connected successfully";
@@ -19,17 +20,3 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 ?>
-
-<!-- mysqli method -->
-
-
-<!-- <?php
-// connection create
-$conn= new mysqli($servername, $username, $password);
-
-// check connectoin
-if($conn->connect_error){
-    die("connection failed:" . $conn->connect_error);
-}
-echo "connected successfully";
-?> -->

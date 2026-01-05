@@ -53,6 +53,9 @@ switch ($request) {
     case '/admin/register':
         require_once __DIR__ . '/backend/register.php';
         break;
+    case '/admin/logout':
+        require_once __DIR__ . '/backend/logout.php';
+        break;
 
 
 
