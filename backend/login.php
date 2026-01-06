@@ -45,6 +45,11 @@ if(isset($_SESSION['userlogin'])){
             if($result){
               $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
               if($stmtselect->rowCount() > 0){
+                      if ($user['roles'] !== 'admin') {
+                         var_dump($user['roles']);
+                          http_response_code(403);
+                          exit('Access denied: Admin only');
+                      }
                 if( $user['status'] != 0){
 
                   $_SESSION['userlogin'] = $user;

@@ -52,9 +52,10 @@
 
         if (empty($errors)) {
     // DB query here
-          $sql="INSERT INTO users (fName, lName, username, email, pass) VALUES(?,?,?,?,?)";
+          $roles = "admin";
+          $sql="INSERT INTO users (fName, lName, username, email, pass, roles) VALUES(?,?,?,?,?,?)";
           $stmtinsert =$conn->prepare($sql);
-          $result = $stmtinsert->execute([$fName, $lName, $username, $email, $pass]);
+          $result = $stmtinsert->execute([$fName, $lName, $username, $email, $pass, $roles]);
             if($result){
               echo 'successfully saved';
               $success = true;

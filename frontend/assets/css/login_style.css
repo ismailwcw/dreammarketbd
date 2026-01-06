@@ -1,0 +1,149 @@
+:root{
+    --primary-color:#4070f4;
+    --secend-color: #fff;
+    --bg-color:#f0faff;
+    --text-color-dark:#333;
+
+}
+
+*{
+
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins", sans-serif;
+}
+
+body{
+    min-height: 80vh;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color)
+}
+.page-center{
+    min-height: calc(100vh - 60px); /* navbar height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper{
+    position: relative;
+    max-width: 470px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 30px 30px 120px;
+    background: var(--primary-color);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.form.login{
+    position: absolute;
+    left: 50%;
+    bottom: -86%;
+    transform: translateX(-50%);
+    width: calc(100% + 220px);
+    padding: 20px 140px;
+    border-radius: 50%;
+    height: 100%;
+    background: var(--secend-color);
+    transition: all 0.6s ease;
+}
+
+.wrapper.active .form.login{
+    bottom: -15%;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30%;
+
+}
+
+.form header{
+    font-size: 30px;
+    text-align: center;
+    color: var(--secend-color);
+    font-weight: 600;
+    cursor: pointer;
+    
+}
+
+.form.login header{
+    color: var(--text-color-dark);
+    opacity: 0.6;
+}
+
+.wrapper.active .form.login header{
+    opacity: 1;
+}
+.wrapper.active .singup header{
+    opacity: 0.6;
+}
+.wrapper form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+form input{
+    height: 60px;
+    outline: none;
+    border: none;
+    padding: 0 15px;   
+    font-size: 1rem;
+    font-weight: 400;
+    color:var(--text-color-dark) ;
+    border-radius: 8px;
+    background: var(--secend-color);
+}
+
+.form.login input{
+    border: 1px solid #aaa;
+}
+.form.login input:focus{
+    box-shadow: 0 1px 0 #ddd;
+}
+form .checkbox{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox input[type="checkbox"]{
+    height: 1rem;
+    width: 1rem;
+    accent-color: var(--secend-color);
+    cursor: pointer;
+}
+
+form .checkbox label{
+    cursor: pointer;
+    color: var(--secend-color);
+}
+
+form a{
+    color: var(--text-color-dark);
+    text-decoration: none;
+}
+form a:hover{
+    text-decoration: underline;
+}
+
+form input[type="submit"]{
+    margin-top: 1rem;
+    padding: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.form.login input[tupe="submit"]{
+    background: var(--primary-color);
+    color: var(--secend-color);
+    border: none;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 10px;
+}

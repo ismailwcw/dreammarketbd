@@ -32,7 +32,7 @@
                      <div class="login_bt">
                         <ul>
                            <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="#">Login</a></li>
+                           <li><a href="/login">Login</a></li>
                            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                         </ul>
                      </div>
