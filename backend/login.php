@@ -3,7 +3,7 @@ session_start();
 
 
 // If the user is already logged in, redirect to dashboard
-if(isset($_SESSION['userlogin'])){
+if(isset($_SESSION['adminlogin'])){
     header("Location: /admin"); // redirect to dashboard
     exit;
 }?>
@@ -52,8 +52,8 @@ if(isset($_SESSION['userlogin'])){
                       }
                 if( $user['status'] != 0){
 
-                  $_SESSION['userlogin'] = $user;
-                    if(isset($_SESSION['userlogin'])){
+                  $_SESSION['adminlogin'] = $user;
+                    if(isset($_SESSION['adminlogin'])){
                       header("location: /admin");}
                       exit;
                 }else{

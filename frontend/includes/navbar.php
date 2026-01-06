@@ -1,3 +1,17 @@
+<?php
+
+$loging_btn = $logout_btn = $login_link = $logout_link ="";
+
+if(isset($_SESSION['userlogin'])){
+    $logout_btn = "Logout";
+    $logout_link = "/logout";
+    $user = $_SESSION['userlogin']; // retrieve user from session
+   }
+   else{
+      $login_link = "/login";
+      $loging_btn = "Loging";
+   }
+?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                <a class="navbar-brand"href="/"><img src="/frontend/assets/images/logo.png"></a>
@@ -32,7 +46,7 @@
                      <div class="login_bt">
                         <ul>
                            <li class="active"><a href="#">Buy Now</a></li>
-                           <li><a href="/login">Login</a></li>
+                           <li><a href="<?php echo $login_link . $logout_link ?>"><?php echo $loging_btn . $logout_btn?></a></li>
                            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                         </ul>
                      </div>

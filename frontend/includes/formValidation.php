@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// If the user is already logged in, redirect to dashboard
+if(isset($_SESSION['userlogin'])){
+    header("Location: /"); // redirect to dashboard
+    exit;
+}?>
+<?php
 $errors = [];
 $success = "";
 
@@ -68,19 +76,21 @@ if (isset($_POST['login'])) {
             if($result){
               $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
               if($stmtselect->rowCount() > 0){
-                if( $user['status'] != 0){
+                if ($user['roles'] === 'user') {
+                    if( $user['status'] != 0){
 
-                  $_SESSION['userlogin'] = $user;
-                    if(isset($_SESSION['userlogin'])){
-                      header("location: /admin");}
-                      exit;
-                }else{
-                $inactive = "User " . $user['email'] . " is inactive please contact with admin";
-
+                    $_SESSION['userlogin'] = $user;
+                        if(isset($_SESSION['userlogin'])){
+                        header("location: /");}
+                        exit;
+                    }
+                    else{
+                        $inactive = "User " . $user['email'] . " is inactive please contact with admin";
+                    }
                 }
-              }else{
+            }else{
                 $invalid = "Invalid User!";
-              }
+            }
             
             }
             else{

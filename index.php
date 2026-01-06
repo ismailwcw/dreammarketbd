@@ -42,6 +42,9 @@ switch ($request) {
         require_once __DIR__ . '/frontend/login.php';
         break;
 
+        case '/logout':
+            require_once __DIR__ . '/frontend/logout.php';
+            break;
 
 // backend route
     case '/admin':

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['userlogin'])){
+    header("Location: /admin/login");
+    exit;
+}
+$user = $_SESSION['userlogin']; // retrieve user from session
+?>
 <!DOCTYPE html>
 
  <?php require_once __DIR__ . '/includes/head.php';?>

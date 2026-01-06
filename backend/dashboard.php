@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['userlogin'])){
+if(!isset($_SESSION['adminlogin'])){
     header("Location: /admin/login");
     exit;
 }
-$user = $_SESSION['userlogin']; // retrieve user from session
+$user = $_SESSION['adminlogin']; // retrieve user from session
 ?>
  
  
