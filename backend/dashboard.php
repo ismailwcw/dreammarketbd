@@ -6,9 +6,9 @@ if(!isset($_SESSION['userlogin'])){
 }else{ 
   $user = $_SESSION['userlogin']; // retrieve user from session
   if ($user['roles'] !== 'admin') {
-                         var_dump($user['roles']);
-                          http_response_code(403);
-                          exit('Access denied: Admin only');
+                         http_response_code(403);
+                          require_once __DIR__ . '/includes/403.php';
+                          exit;
                       }}
 
 ?>
