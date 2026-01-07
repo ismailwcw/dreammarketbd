@@ -1,8 +1,24 @@
+<?php
+session_start();
+
+
+// If the user is already logged in, redirect to dashboard
+if(isset($_SESSION['userlogin'])){
+  $user = $_SESSION['userlogin']; // retrieve user from session
+  if ($user['roles'] !== 'admin') {
+                         var_dump($user['roles']);
+                          http_response_code(403);
+                          exit('Access denied: Admin only');
+                      }
+    else{header("Location: /admin"); // redirect to dashboard
+    exit;}
+} 
+  ?>
 <?php require_once __DIR__ . '/includes/db.php';?>
 
 <?php
 
-    $email = $pass = "";
+    $email = $pass = $inactive = $invalid = "";
     $errors = [];
     if($_SERVER["REQUEST_METHOD"]== "POST"){
        
@@ -21,11 +37,50 @@
         }else{
             $pass = htmlspecialchars($pass);
         }
+      echo "<pre>";
         var_dump($email, $pass);
+        echo "</pre>";
+        if (empty($errors)) {
+            // DB query here
+
+            $emails =$_POST['email'];
+            $passwords =$_POST['pass'];
+
+          $sql="SELECT * FROM users WHERE email = ? AND pass = ? LIMIT 1";
+          $stmtselect =$conn->prepare($sql);
+          $result = $stmtselect->execute([$emails, $passwords]);
+            if($result){
+              $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
+              if($stmtselect->rowCount() > 0){
+                      if ($user['roles'] !== 'admin') {
+                         var_dump($user['roles']);
+                          http_response_code(403);
+                          exit('Access denied: Admin only');
+                      }
+                if( $user['status'] != 0){
+
+                  $_SESSION['userlogin'] = $user;
+                    if(isset($_SESSION['userlogin'])){
+                      header("location: /admin");}
+                      exit;
+                }else{
+                $inactive = "User " . $user['email'] . " is inactive please contact with admin";
+
+                }
+              }else{
+                $invalid = "Invalid User!";
+              }
+            
+            }
+            else{
+              echo 'there was a problm while saving data';
+            }
+          }
         
     }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +100,7 @@
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
                   <form class="user" method="POST" novalidate autocomplete="off">
+                    <p class="text-danger text-center"><?php echo $inactive . $invalid ?></p>
                     <div class="form-group">
                         <input type="email" class="form-control" id="exampleInputEmail" name="email" value="<?php echo htmlspecialchars($email); ?>" aria-describedby="emailHelp"
                         placeholder="Enter Email Address">

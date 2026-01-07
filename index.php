@@ -38,7 +38,13 @@ switch ($request) {
     case '/blog-details':
         require_once __DIR__ . '/frontend/blog-details.php';
         break;
-
+    case '/login':
+        require_once __DIR__ . '/frontend/login.php';
+        break;
+        
+    case '/logout':
+        require_once __DIR__ . '/frontend/logout.php';
+        break;
 
 // backend route
     case '/admin':
@@ -52,6 +58,9 @@ switch ($request) {
         break;
     case '/admin/register':
         require_once __DIR__ . '/backend/register.php';
+        break;
+    case '/admin/logout':
+        require_once __DIR__ . '/backend/logout.php';
         break;
 
 

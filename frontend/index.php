@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 
  <?php require_once __DIR__ . '/includes/head.php';?>
@@ -403,7 +404,7 @@
                         </form>
                         <div class="map_main map_container">
                            <div class="map-responsive">
-                              <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="368" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
+                                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1085.8056157406527!2d90.43936613827266!3d23.74023925439939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1767655503162!5m2!1sen!2sbd" width="600" height="368" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
                               <div class="btn_main">
                                  <div class="map_bt d-flex justify-content-center w-100 map_center"><a href="#" id="showForm">Form</a></div>
                               </div>

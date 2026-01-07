@@ -1,3 +1,19 @@
+<?php
+session_start();
+if(!isset($_SESSION['userlogin'])){
+    header("Location: /admin/login");
+    exit;
+}else{ 
+  $user = $_SESSION['userlogin']; // retrieve user from session
+  if ($user['roles'] !== 'admin') {
+                         var_dump($user['roles']);
+                          http_response_code(403);
+                          exit('Access denied: Admin only');
+                      }}
+
+?>
+ 
+ 
  <!DOCTYPE html>
 <html lang="en">
   <!-- head -->
@@ -18,7 +34,7 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard </h1> 
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -125,7 +141,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                  <a href="/admin/login" class="btn btn-primary">Logout</a>
+                  <a href="/admin/logout" class="btn btn-primary">Logout</a>
                 </div>
               </div>
             </div>
