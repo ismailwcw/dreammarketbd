@@ -3,8 +3,14 @@ session_start();
 
 // If the user is already logged in, redirect to dashboard
 if(isset($_SESSION['userlogin'])){
-    header("Location: /"); // redirect to dashboard
-    exit;
+  $user = $_SESSION['userlogin']; // retrieve user from session
+
+  
+  if ($user['roles'] !== 'admin') {
+        header("Location: /"); // redirect to dashboard
+        exit;
+    }
+  
 }?>
 <?php
 $errors = [];
@@ -48,8 +54,6 @@ if (isset($_POST['signup'])) {
               echo 'there was a problm while saving data';
             }
           }
-          var_dump($name, $email, $password, $roles);
-
     }
 
 // LOGIN VALIDATION

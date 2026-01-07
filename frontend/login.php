@@ -2,6 +2,7 @@
 <?php require_once __DIR__ . '/includes/head.php';?>
 <?php require_once __DIR__ . '/includes/formValidation.php'; ?>
 <?php require_once __DIR__ . '/includes/login_head.php'; ?>
+<?php $login_info= "Test account: " . "</br>" . "Email: admin@test.com" . "</br>" . "Password: 123456" ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +43,7 @@
                     <a href="#">forget password</a>
                     <input type="submit" name="login" value="Login">
                 </form>
+                <h3><?php echo $login_info ?></h3>
             </div>
         </section>
     

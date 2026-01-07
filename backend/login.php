@@ -15,6 +15,8 @@ if(isset($_SESSION['userlogin'])){
 } 
   ?>
 <?php require_once __DIR__ . '/includes/db.php';?>
+<?php $login_info= "Test account: " . "</br>" . "Email: admin@test.com" . "</br>" . "Password: 123" ?>
+
 
 <?php
 
@@ -126,6 +128,7 @@ if(isset($_SESSION['userlogin'])){
                     <a class="font-weight-bold small" href="/admin/register">Create an Account!</a>
                   </div>
                   <div class="text-center">
+                                    <h4><?php echo $login_info ?></h4>
                   </div>
                 </div>
               </div>
