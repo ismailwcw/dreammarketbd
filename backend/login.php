@@ -4,9 +4,16 @@ session_start();
 
 // If the user is already logged in, redirect to dashboard
 if(isset($_SESSION['userlogin'])){
-    header("Location: /admin"); // redirect to dashboard
-    exit;
-}?>
+  $user = $_SESSION['userlogin']; // retrieve user from session
+  if ($user['roles'] !== 'admin') {
+                         var_dump($user['roles']);
+                          http_response_code(403);
+                          exit('Access denied: Admin only');
+                      }
+    else{header("Location: /admin"); // redirect to dashboard
+    exit;}
+} 
+  ?>
 <?php require_once __DIR__ . '/includes/db.php';?>
 
 <?php

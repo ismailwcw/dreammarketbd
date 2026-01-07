@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// If the user is already logged in, redirect to dashboard
+if(isset($_SESSION['userlogin'])){
+    header("Location: /"); // redirect to dashboard
+    exit;
+}?>
+<?php
 $errors = [];
 $success = "";
 
@@ -49,38 +57,44 @@ $email = "";
 if (isset($_POST['login'])) {
 
     $email = trim($_POST['email']);
-    $password = $_POST['pass'];
+    $passwords = trim($_POST['pass']);
 
-    if (empty($email) || empty($password)) {
+    if (empty($email) || empty($passwords)) {
         $errors[] = "All login fields are required";
     }
 
     if (empty($errors)) {
-        $success = "Login successful!";
         // here you would check database
 
         $emails =$_POST['email'];
-            $passwords =$_POST['pass'];
+        $passwords =$_POST['pass'];
 
           $sql="SELECT * FROM users WHERE email = ? AND pass = ? LIMIT 1";
           $stmtselect =$conn->prepare($sql);
           $result = $stmtselect->execute([$emails, $passwords]);
             if($result){
               $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
-              if($stmtselect->rowCount() > 0){
-                if( $user['status'] != 0){
-
-                  $_SESSION['userlogin'] = $user;
-                    if(isset($_SESSION['userlogin'])){
-                      header("location: /admin");}
-                      exit;
-                }else{
-                $inactive = "User " . $user['email'] . " is inactive please contact with admin";
-
-                }
-              }else{
-                $invalid = "Invalid User!";
+              if($email !== $user['email'] ){
+                $errors[] = "User not found";
+              }elseif( $passwords !== $user['pass']){
+                $errors[] = "User not found";
               }
+              if($stmtselect->rowCount() > 0){
+                if ($user['roles'] === 'user') {
+                    if( $user['status'] != 0){
+
+                    $_SESSION['userlogin'] = $user;
+                        if(isset($_SESSION['userlogin'])){
+                        header("location: /");}
+                        exit;
+                    }
+                    else{
+                        $inactive = "User " . $user['email'] . " is inactive please contact with admin";
+                    }
+                }
+            }else{
+                $invalid = "Invalid User!";
+            }
             
             }
             else{

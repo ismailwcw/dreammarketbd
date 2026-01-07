@@ -3,8 +3,14 @@ session_start();
 if(!isset($_SESSION['userlogin'])){
     header("Location: /admin/login");
     exit;
-}
-$user = $_SESSION['userlogin']; // retrieve user from session
+}else{ 
+  $user = $_SESSION['userlogin']; // retrieve user from session
+  if ($user['roles'] !== 'admin') {
+                         var_dump($user['roles']);
+                          http_response_code(403);
+                          exit('Access denied: Admin only');
+                      }}
+
 ?>
  
  

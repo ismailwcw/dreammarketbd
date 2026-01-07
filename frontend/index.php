@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 
  <?php require_once __DIR__ . '/includes/head.php';?>
